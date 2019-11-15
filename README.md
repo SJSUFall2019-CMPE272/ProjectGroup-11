@@ -6,6 +6,18 @@ Employee productivity and satisfaction are absolutely essential to businesses. I
 
 SWIFT is a Slack plug-in application which will automate the process of sending employee messages to the right people. It looks at individual messages in a Slack support channel and routes the problem to the right people. The app also has a dashboard that can pull stats to help guide the support team's planning and taking proactive actions.
 
+# Hill Statement
+Who-
+Any employee that needs to report any issue to the specific department in the organization.
+
+What-
+A slack plug-in application that automates the process of sending messages or reporting issues to the relavent department in the organization.
+
+Wow Factor-
+It assures the whole process of sending messages to the appropriate department to be fast,
+flexible and accurate, so that the problem is fixed as early as possible.
+
+
 # Architecture Diagram
 ![Architecture](https://github.com/SJSUFall2019-CMPE272/swift/blob/master/CE%20272%20Swift%20Diagram.jpg)
 
