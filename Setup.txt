@@ -6,7 +6,9 @@ Parts 1 and 2.
 
 2. Install Node.js, the Yarn package manager, Express.js, and ngrok.
 
-3. Git clone. Login to Slack and navigate to "My Apps".
+3. Git clone. Type
+npm install
+to install dependencies. Login to Slack SwiftDemo and navigate to "My Apps".
 
 4. Create a .env file. This will hold the verification token under Basic Info->App Credentials
 and the access token under Install App.
