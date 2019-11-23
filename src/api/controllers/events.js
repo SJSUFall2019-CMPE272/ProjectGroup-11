@@ -3,7 +3,7 @@ import filterChannels from '../middleware/channels'
 
 import { readChannelHistory, forward } from '../services/slack'
 
-import { support_channel, general_channel } from '../middleware/channels'
+import { support_channel, general_channel, it_channel, health_channel, finance_channel } from '../middleware/channels'
 
 const router = new express.Router()
 
@@ -20,6 +20,9 @@ router.post('/events', filterChannels, async (req, res) => {
 
     // console.log('support channel id:', support_channel)
     // console.log('general channel id', general_channel)
+    // console.log('it support channel id:', it_channel)
+    // console.log('health channel id:', health_channel)
+    // console.log('finance channel id:', finance_channel)
 
     let status = 200
     await readChannelHistory(support_channel)

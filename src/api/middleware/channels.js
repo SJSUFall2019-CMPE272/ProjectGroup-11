@@ -5,8 +5,11 @@ or url verification to be forwarded */
 
 let support_channel = ''
 let general_channel = ''
+let it_channel = ''
+let health_channel = ''
+let finance_channel = ''
 export default async (req, res, next) => {
-    console.log(req.body)
+    // console.log(req.body)
 
     let status = 200
     await listChannels()
@@ -28,6 +31,18 @@ export default async (req, res, next) => {
                 {
                     general_channel = channel_id
                 }
+                else if (channel_name === 'itsupport')
+                {
+                    it_channel = channel_id
+                }
+                else if (channel_name === 'finance')
+                {
+                    finance_channel = channel_id
+                }
+                else if (channel_name === 'health')
+                {
+                    health_channel = channel_id
+                }
             }
             // trying to exit the then function
             // return Promise.resolve(response)
@@ -44,4 +59,4 @@ export default async (req, res, next) => {
     //next()
 }
 
-export { support_channel, general_channel }
+export { support_channel, general_channel, it_channel, health_channel, finance_channel }
