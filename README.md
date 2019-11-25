@@ -26,5 +26,6 @@ flexible and accurate, so that the problem is fixed as early as possible.
 
 # Technology Stack
 Node JS, Express JS, Slack API, Stanford NER tagger.
-
+![Slack API](slack_api_logo.png)
+![Stanford NLP](stanford_nlp_logo.jpg)
 
