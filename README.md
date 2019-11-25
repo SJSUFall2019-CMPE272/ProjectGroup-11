@@ -22,7 +22,7 @@ flexible and accurate, so that the problem is fixed as early as possible.
 
 
 # Architecture Diagram
-![Architecture](https://github.com/SJSUFall2019-CMPE272/swift/blob/master/CE%20272%20Swift%20Diagram.jpg)
+![Architecture](https://github.com/SJSUFall2019-CMPE272/swift/blob/master/CE%20272%20Swift%20Diagram%202.png)
 
 # Technology Stack
 Node JS, Express JS, Slack API, Stanford NER tagger.
