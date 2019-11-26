@@ -36,10 +36,52 @@ router.post('/events', filterChannels, async (req, res) => {
                 3000, 9191, forwardedMessage, 
                 function(err, res){
                     // console.log("res is:", res)
-                    console.log('post tags: '+JSON.stringify(res.tags)+'\n')
+                    let tags = res.tags
+                    console.log('post tags: ' + JSON.stringify(res.tags) +'\n')
+
+                    // currently, choose latest category available as dest channel
+                    let destinationChannel = ''
+                    let itWordCount = 0
+                    let financeWordCount = 0
+                    let healthWordCount = 0
+                    if (tags.hasOwnProperty('ITSUPPORT'))
+                    {
+                        let word
+                        for (word in tags.ITSUPPORT)
+                        {
+                            itWordCount++
+                        }
+                        console.log('it', itWordCount)
+                        destinationChannel = it_channel
+                    }
+                    if (tags.hasOwnProperty('FINANCE'))
+                    {
+                        let word
+                        for (word in tags.FINANCE)
+                        {
+                            financeWordCount++
+                        }
+                        console.log('finance', financeWordCount)
+                        destinationChannel = finance_channel
+                    }
+                    if (tags.hasOwnProperty('HEALTH'))
+                    {
+                        let word
+                        for (word in tags.HEALTH)
+                        {
+                            healthWordCount++
+                        }
+                        console.log('health', healthWordCount)
+                        destinationChannel = health_channel
+                    }
+                    if (tags.hasOwnProperty('ITSUPPORT') === false && tags.hasOwnProperty('FINANCE') === false && tags.hasOwnProperty('HEALTH') === false)
+                    {
+                        console.log("No entities tagged!!!")
+                        destinationChannel = general_channel
+                    }
 
                     console.log('finished tagging message')
-                    forward(general_channel, forwardedMessage)
+                    forward(destinationChannel, forwardedMessage)
                 }
             );
             
