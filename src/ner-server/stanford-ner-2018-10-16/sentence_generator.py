@@ -15,8 +15,12 @@ import random
 # verb = ['runs','is','plays','jumps','sings','walks','screams','yells','performs','kicks']
 # prep = ['with','to','around','near','above','at']
 
-proper = ['IP address','MAC address', 'jleggon0', '16-69-0B-63-43-35', '203.35.254.245']
-common = ['computer','program','username','problem','issue','difficulty','information']
+with open('it-text-proper.txt', 'r') as f:
+    proper = f.read().splitlines()
+# proper = ['IP address','MAC address', 'jleggon0', '16-69-0B-63-43-35', '203.35.254.245']
+with open('it-text-common.txt', 'r') as f:
+    common = f.read().splitlines()
+# common = ['username','computer','program','problem','issue','difficulty','information']
 modifier = ['funny','stupid','weird','broken','strange']
 verb = ['runs','is','jumps','performs', 'uses','works','has','gets','takes','breaks','changes']
 prep = ['with','to','around','near','above','at']
