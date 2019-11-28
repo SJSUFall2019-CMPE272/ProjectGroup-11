@@ -17,7 +17,7 @@ import random
 
 with open('it-text-proper.txt', 'r') as f:
     proper = f.read().splitlines()
-# proper = ['IP address','MAC address', 'jleggon0', '16-69-0B-63-43-35', '203.35.254.245']
+# proper = ['IP address','MAC address', 'jleggon0', '16-69-0B-63-43-35', '203.35.254.245', 'username']
 with open('it-text-common.txt', 'r') as f:
     common = f.read().splitlines()
 # common = ['username','computer','program','problem','issue','difficulty','information']
