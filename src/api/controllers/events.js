@@ -39,7 +39,7 @@ router.post('/events', filterChannels, async (req, res) => {
                     let tags = res.tags
                     console.log('post tags: ' + JSON.stringify(res.tags) +'\n')
 
-                    // currently, choose latest category available as dest channel
+                    // hoose majority of words category available as dest channel
                     let destinationChannel = ''
                     let itWordCount = 0
                     let financeWordCount = 0
@@ -52,7 +52,6 @@ router.post('/events', filterChannels, async (req, res) => {
                             itWordCount++
                         }
                         console.log('it', itWordCount)
-                        destinationChannel = it_channel
                     }
                     if (tags.hasOwnProperty('FINANCE'))
                     {
@@ -77,6 +76,24 @@ router.post('/events', filterChannels, async (req, res) => {
                     if (tags.hasOwnProperty('ITSUPPORT') === false && tags.hasOwnProperty('FINANCE') === false && tags.hasOwnProperty('HEALTH') === false)
                     {
                         console.log("No entities tagged!!!")
+                        destinationChannel = general_channel
+                    }
+
+                    if (itWordCount >= healthWordCount && itWordCount >= financeWordCount)
+                    {
+                        destinationChannel = it_channel
+                    }
+                    else if (financeWordCount >= healthWordCount && financeWordCount >= itWordCount)
+                    {
+                        destinationChannel = finance_channel
+                    }
+                    else if (healthWordCount >= itWordCount && healthWordCount >= financeWordCount)
+                    {
+                        destinationChannel = health_channel
+                    }
+                    else
+                    {
+                        console.log("Tagging inconclusive!!!")
                         destinationChannel = general_channel
                     }
 

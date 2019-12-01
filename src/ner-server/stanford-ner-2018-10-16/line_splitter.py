@@ -1,5 +1,13 @@
 # split HEALTH fields into separate words, 1 word per line
-import re
+# import re
+# with open('test-health-space.tsv') as fin, open('test-health2.tsv', 'w') as fout:
+#     for line in fin:
+#         # convert to lowercase
+#         changed_line = line
+#         if (' ' in line or line == '\n'):
+#             continue
+#         fout.write(changed_line)
+
 with open('test-health-space.tsv') as fin, open('test-health2.tsv', 'w') as fout:
     for line in fin:
         # convert to lowercase
