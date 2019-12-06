@@ -88,20 +88,29 @@ router.post('/events', filterChannels, async (req, res) => {
                         destinationChannel = general_channel
                     }
 
-                    if (itWordCount >= healthWordCount && itWordCount >= financeWordCount)
+                    if (destinationChannel != general_channel)
                     {
-                        destinationChannel = it_channel
-                        confirmationMessage = confirmationMessage.concat('itsupport')
-                    }
-                    else if (financeWordCount >= healthWordCount && financeWordCount >= itWordCount)
-                    {
-                        destinationChannel = finance_channel
-                        confirmationMessage = confirmationMessage.concat('finance')
-                    }
-                    else if (healthWordCount >= itWordCount && healthWordCount >= financeWordCount)
-                    {
-                        destinationChannel = health_channel
-                        confirmationMessage = confirmationMessage.concat('health')
+                        if (itWordCount >= healthWordCount && itWordCount >= financeWordCount)
+                        {
+                            destinationChannel = it_channel
+                            confirmationMessage = confirmationMessage.concat('itsupport')
+                        }
+                        else if (financeWordCount >= healthWordCount && financeWordCount >= itWordCount)
+                        {
+                            destinationChannel = finance_channel
+                            confirmationMessage = confirmationMessage.concat('finance')
+                        }
+                        else if (healthWordCount >= itWordCount && healthWordCount >= financeWordCount)
+                        {
+                            destinationChannel = health_channel
+                            confirmationMessage = confirmationMessage.concat('health')
+                        }
+                        else
+                        {
+                            console.log("Word count failed, default to general")
+                            destinationChannel = general_channel
+                            confirmationMessage = confirmationMessage.concat('general')
+                        }
                     }
                     else
                     {
