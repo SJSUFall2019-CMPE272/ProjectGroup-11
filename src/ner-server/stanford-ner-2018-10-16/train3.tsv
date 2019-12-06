@@ -6,6 +6,10 @@ medicine    HEALTH
 
 medication  HEALTH
 
+medicines   HEALTH
+
+medications HEALTH
+
 fever   HEALTH
 
 cold    HEALTH
@@ -206,7 +210,7 @@ mirtazapine	HEALTH
 
 cholestyramine	HEALTH
 
-"carbidopa	HEALTH
+carbidopa	HEALTH
 
 cometriq	HEALTH
 
@@ -272,7 +276,7 @@ uceris	HEALTH
 
 ergocalciferol	HEALTH
 
-"carisoprodol	HEALTH
+carisoprodol	HEALTH
 
 fenofibrate	HEALTH
 
@@ -320,7 +324,7 @@ escitalopram	HEALTH
 
 acyclovir	HEALTH
 
-"acetaminophen	HEALTH
+acetaminophen	HEALTH
 
 quinapril	HEALTH
 
@@ -604,7 +608,7 @@ excedrin	HEALTH
 
 antiseptic	HEALTH
 
-"butalbital	HEALTH
+butalbital	HEALTH
 
 egrifta	HEALTH
 
@@ -724,7 +728,7 @@ ampicillin	HEALTH
 
 lari-clear	HEALTH
 
-"butalbital	HEALTH
+butalbital	HEALTH
 
 gemfibrozil	HEALTH
 
@@ -743,6 +747,18 @@ lamotrigine	HEALTH
 methyldopa	HEALTH
 
 nexium	HEALTH
+
+debit   HEALTH
+card    HEALTH
+
+order   FINANCE
+form    FINANCE
+
+purchase    FINANCE
+
+transaction FINANCE
+
+transactions    FINANCE
 
 american    FINANCE
 express FINANCE
@@ -2761,11 +2777,17 @@ account FINANCE
 
 computer    ITSUPPORT
 
+laptop  ITSUPPORT
+
 program ITSUPPORT
 
 internet    ITSUPPORT
 
 browser ITSUPPORT
+
+chrome  ITSUPPORT
+
+safari  ITSUPPORT
 
 mac ITSUPPORT
 
