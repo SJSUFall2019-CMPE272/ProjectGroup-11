@@ -2,7 +2,7 @@
 # to check: java -cp stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ner-model.ser.gz -testFile test2.tsv
 
 # location of the training file
-trainFile = train3.tsv
+trainFile = train4.tsv
 # location where you would like to save (serialize) your
 # classifier; adding .gz at the end automatically gzips the file,
 # making it smaller, and faster to load
