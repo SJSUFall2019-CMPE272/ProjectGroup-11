@@ -1,4 +1,4 @@
-import { listChannels } from '../services/slack'
+import { listUsers, listChannels } from '../services/slack'
 
 /* only allow messages detected from support channel
 or url verification to be forwarded */
@@ -8,10 +8,29 @@ let general_channel = ''
 let it_channel = ''
 let health_channel = ''
 let finance_channel = ''
+let userIDList= []
 export default async (req, res, next) => {
     // console.log(req.body)
 
     let status = 200
+
+    await listUsers()
+        .then(response => {
+            for (let i = 0; i < response.ims.length; i++)
+            {
+                let user_id = response.ims[i].user
+                if (!userIDList.includes(user_id))
+                {
+                    userIDList.push(user_id)
+                    console.log('user_id:', user_id)
+                }
+            }
+        })
+        .catch(() => {
+            console.log('list user error')
+            status = 503
+        })
+
     await listChannels()
         .then(response => {
             // console.log("list of channels:")
@@ -48,6 +67,7 @@ export default async (req, res, next) => {
             // return Promise.resolve(response)
         })
         .catch(() => {
+            console.log('list channel error')
             status = 503
         })
 
@@ -59,4 +79,4 @@ export default async (req, res, next) => {
     //next()
 }
 
-export { support_channel, general_channel, it_channel, health_channel, finance_channel }
+export { support_channel, general_channel, it_channel, health_channel, finance_channel, userIDList }

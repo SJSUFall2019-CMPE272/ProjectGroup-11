@@ -3,7 +3,7 @@ import filterChannels from '../middleware/channels'
 
 import { readChannelHistory, forward } from '../services/slack'
 
-import { support_channel, general_channel, it_channel, health_channel, finance_channel } from '../middleware/channels'
+import { support_channel, general_channel, it_channel, health_channel, finance_channel, userIDList } from '../middleware/channels'
 
 const router = new express.Router()
 
@@ -18,6 +18,11 @@ router.post('/events', filterChannels, async (req, res) => {
     // which message text to forward, 0 is most recently posted
     let msgIndex = 0
 
+    // user id of whoever posted the message
+    let postingUserID = ''
+
+    let confirmationMessage = 'Your message has been sent to '
+
     // console.log('support channel id:', support_channel)
     // console.log('general channel id', general_channel)
     // console.log('it support channel id:', it_channel)
@@ -30,6 +35,10 @@ router.post('/events', filterChannels, async (req, res) => {
             let channelHistory = response
             let forwardedMessage = channelHistory.messages[msgIndex].text
 
+            postingUserID = channelHistory.messages[msgIndex].user
+
+            console.log('poster was', postingUserID)
+
             console.log('starting ner tagging')
             // get tags using ner
             ner.post(
@@ -39,7 +48,7 @@ router.post('/events', filterChannels, async (req, res) => {
                     let tags = res.tags
                     console.log('post tags: ' + JSON.stringify(res.tags) +'\n')
 
-                    // hoose majority of words category available as dest channel
+                    // choose majority category available as dest channel
                     let destinationChannel = ''
                     let itWordCount = 0
                     let financeWordCount = 0
@@ -82,23 +91,30 @@ router.post('/events', filterChannels, async (req, res) => {
                     if (itWordCount >= healthWordCount && itWordCount >= financeWordCount)
                     {
                         destinationChannel = it_channel
+                        confirmationMessage = confirmationMessage.concat('itsupport')
                     }
                     else if (financeWordCount >= healthWordCount && financeWordCount >= itWordCount)
                     {
                         destinationChannel = finance_channel
+                        confirmationMessage = confirmationMessage.concat('finance')
                     }
                     else if (healthWordCount >= itWordCount && healthWordCount >= financeWordCount)
                     {
                         destinationChannel = health_channel
+                        confirmationMessage = confirmationMessage.concat('health')
                     }
                     else
                     {
                         console.log("Tagging inconclusive!!!")
                         destinationChannel = general_channel
+                        confirmationMessage = confirmationMessage.concat('general')
                     }
 
                     console.log('finished tagging message')
                     forward(destinationChannel, forwardedMessage)
+
+                    // send confirmation message to user
+                    forward(postingUserID, confirmationMessage)
                 }
             );
             

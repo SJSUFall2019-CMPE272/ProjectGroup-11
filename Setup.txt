@@ -1,4 +1,4 @@
-(Michael 10-31-19)
+(Michael 12-5-19)
 How to setup and run:
 
 1. The app is based off this tutorial: https://x-team.com/blog/slack-app-step-by-step/
@@ -33,3 +33,23 @@ Save changes.
 
 7. Go to Swift workspace. Now when you post a new message in the support channel, the 
 message is read, the tagged entities are logged, and the message is reposted in the general channel.
+
+8. To close, individually CTRL-C all terminals. Otherwise the app or ner server may be listening at ports
+even after you've closed your text editor. If that happens, use
+netstat -ano | findstr :yourPortNumber
+taskkill /PID typeyourPIDhere /F
+
+Training Instructions:
+1. Get a train and test CSV file from Mockaroo website. Specify a category per CSV - itsupport, health, or finance.
+
+2. Run csv_to_tsv.py, replacing CSV name with your CSV file name, and the string after \t with your category,
+ex. '\tHEALTH\n'
+
+3. Run extra_space_generator.py to separate words as documents and set them to lowercase. You have
+to replace all labels with all-caps again, ex. health to HEALTH
+
+4. Repeat for your test CSV file. You should have two TSV files now, one for train and test.
+
+5. Replace train3.tsv in train.prop with your train TSV. Now you can train and check accuracy. Use:
+java -cp stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -prop train.prop
+java -cp stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ner-model.ser.gz -testFile test.tsv
