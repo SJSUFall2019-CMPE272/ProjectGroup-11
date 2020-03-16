@@ -1,3 +1,5 @@
+# include unrelated dictionary words in train tsv file
+
 import re
 
 with open('train4-remove-labels.tsv') as f, open('train4-remove-labels-2.tsv', 'w') as fout:
@@ -8,13 +10,12 @@ with open('train4-remove-labels.tsv') as f, open('train4-remove-labels-2.tsv', '
 with open('train4-remove-labels-2.tsv') as file:
     contents = file.read()
 
+# words-alpha.txt contains a dictionary of words
 with open('words_alpha.txt') as fin, open('train-out.tsv', 'w') as fout:
     for line in fin:
         changed_line = line
         if not (changed_line in contents):
             fout.write(changed_line)
-        # else:
-        #     print(changed_line)
 
 with open('train-out.tsv') as fin, open('train-out-space.tsv', 'w') as fout:
     for line in fin:
